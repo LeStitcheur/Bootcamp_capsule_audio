@@ -17,18 +17,60 @@
         <section class="song__infos">
           <div class="song__infos__img">
             <img src="assets/img/cover1.png" alt="" />
-            <audio src="" data-trackid=""></audio>
+            <audio src="" data-trackid=""></audio>  
+          </div>
+          <div class="song__infos__text">
+            <h2 id="title">song name</h2>
+            <p id="artist">artist name</p>
           </div>
         </section>
         <section class="song__controls">
           <div class="song__controls__progress">
-            <div class="song__controls__progress__time-current" id="elapsed"></div>
-              0:00
+            <div class="song__controls__progress__time">
+              <div class="song__controls__progress__time__current" id="elapsed">
+                0:00
+              </div>
+              <div
+                class="song__controls__progress__time__total"
+                id="track-time"
+              >
+                3:00
+              </div>
             </div>
-            <div class="song__controls__progress__time-total">3:00</div>
+            <input
+              type="range"
+              min="0"
+              value="0"
+              class="song__controls__progress__range"
+              id="track"
+            />
+          </div>
+          <div class="song__controls__buttons">
+            <button class="song__controls__buttons__reload" id="reload">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+            <button class="song__controls__buttons__stop" id="stop">
+              <i class="fa-solid fa-stop"></i>
+            </button>
+            <button class="song__controls__buttons__play" id="play">
+              <i class="fas fa-play"></i>
+            </button>
+            <button class="song__controls__buttons__pause" id="pause">
+              <i class="fa-solid fa-pause"></i>
+            </button>
+            <button class="song__controls__buttons__next" id="next">
+              <i class="fas fa-forward"></i>
+            </button>
+            <button class="song__controls__buttons__mute" id="mute">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <button class="song__controls__buttons__demute" id="demute">
+              <i class="fa-solid fa-volume-xmark"></i>
+            </button>
           </div>
         </section>
       </section>
     </main>
+    <script src="js/app.js"></script>
   </body>
 </html>

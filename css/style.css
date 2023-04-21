@@ -1,8 +1,8 @@
 @import url(fonts.css);
 
 :root {
-    --primary-color: #EE7633;
-    --secondary-color: #feeacf;
+    --primary-color: green;
+    --secondary-color: #DBDAEA;
     --tertiary-color: #292929;
 }
 
@@ -170,7 +170,7 @@ main {
     align-items: center;
     color: var(--tertiary-color);
     border-radius: 50px;
-    background: #EE7633;
+    background: var(--primary-color);
     -webkit-appearance: none;
 }
 
@@ -198,30 +198,30 @@ main {
 
 #track::-moz-range-track {
     width: 100%;
-    height: 100%;
+    height: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     color: var(--tertiary-color);
-    background-color: var(--primary-color);
+    border-radius: 50px;
+    background: var(--primary-color);
     -webkit-appearance: none;
-    font-size: 0.8rem;
 }
 
 #track::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: var(--tertiary-color);
     background-color: var(--tertiary-color);
     -webkit-appearance: none;
-    font-size: 0.8rem;
     border-radius: 50%;
     border: 1px solid var(--primary-color);
+    transition: .3s;
 }
 
 .song__controls__buttons {
