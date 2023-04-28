@@ -52,11 +52,115 @@ const tracks = [
         cover: "assets/img/orelsan.jpg",
         src: "assets/song/Suicide social.mp3"
     },
+    {
+        trackID: 6,
+        title: "Dans la cage",
+        artist: "Sinik",
+        cover: "assets/img/cover4.png",
+        src: "assets/song/Sinik - Dans la cage.mp3"
+    },
 ]
 
 window.addEventListener("load", getSong())
 
+playButton.addEventListener('click', () => {
+    audio.play()
+    pauseButton.style.display = "flex"
+    stopButton.style.display = "flex"
+    playButton.style.display = "none"
+})
 
+pauseButton.addEventListener('click', () => {
+    audio.pause()
+    playButton.style.display = "flex"
+    pauseButton.style.display = "none"
+})
+
+stopButton.addEventListener('click', () => {
+    audio.pause()
+    audio.currentTime = 0
+    pauseButton.style.display = "none"
+    stopButton.style.display = "none"
+    playButton.style.display = "flex"
+})
+
+nextButton.addEventListener('click', () => {
+    getSong()
+    audio.play()
+    pauseButton.style.display = "flex"
+    stopButton.style.display = "flex"
+    playButton.style.display = "none"
+})
+
+muteButton.addEventListener('click', () => {
+    audio.volume = 0
+    demuteButton.style.display = "flex"
+    muteButton.style.display = "none"
+})
+
+demuteButton.addEventListener('click', () => {
+    audio.volume = 1
+    demuteButton.style.display = "none"
+    muteButton.style.display = "flex"
+})
+
+audio.addEventListener('timeupdate', () => {
+    track.value = audio.currentTime
+    elapsed.textContent = buildDuration(audio.currentTime)
+})
+
+audio.addEventListener('loadedmetadata', () => {
+    track.max = audio.duration
+    trackTime.textContent = buildDuration(audio.duration)
+})
+
+audio.addEventListener('ended', () => {
+    getSong()
+    audio.play()
+})
+
+
+track.addEventListener('input', () => {
+    elapsed.textContent = buildDuration(track.value)
+    audio.currentTime = track.value
+})
+
+document.addEventListener('keydown', (event) => {
+    switch(event.code){
+        case "ArrowRight":
+            event.preventDefault()
+            audio.currentTime += 5
+            break
+        case "ArrowLeft":
+            event.preventDefault()
+            audio.currentTime -= 5
+            break
+        case "Space":
+            event.preventDefault()
+            if(audio.paused){
+                audio.play()
+                pauseButton.style.display = "flex"
+                stopButton.style.display = "flex"
+                playButton.style.display = "none"
+            } else {
+                audio.pause()
+                playButton.style.display = "flex"
+                stopButton.style.display = "none"
+                pauseButton.style.display = "none"
+            }
+            break
+    }
+    
+})
+
+function buildDuration(duration){
+    let minutes = Math.floor(duration / 60)
+    let reste = duration % 60
+    let secondes = Math.floor(reste)
+    secondes = String(secondes).padStart(2, "0")
+    // return `${minutes} : ${seconde}`
+    return minutes + ":" + secondes
+}
 
 function getSong(){
     let songIndex = Math.floor(Math.random() * tracks.length)
